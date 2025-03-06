@@ -4,8 +4,8 @@
 #include <Adafruit_PWMServoDriver.h>
 
 // WiFi Setting
-const char* SSID = "MagentaWLAN-42CZ";                    //  MagentaWLAN-42CZ       
-const char* PASSWORD = "40614273957154815176";            //  40614273957154815176
+const char* SSID = "xxx";                    //  WiFi Name      
+const char* PASSWORD = "xxxxxx";            //  WiFi Password
 
 #define SCL 2  //IO_2 of ESP_01s connect the SCL of driver board
 #define SDA 0  //IO_0 of ESP_01s connect the SDA of driver board
