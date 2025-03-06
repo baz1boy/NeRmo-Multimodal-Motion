@@ -1,5 +1,7 @@
 # NeRmo Mouse Robot
 
+![Robot Simulation](images/NeRmo_Overview.pdf)
+
 [![Video Demonstration](https://img.shields.io/youtube/channel/views/:UClva9bOC5x7I6EH2yGsfpeg)](https://www.youtube.com/watch?v=iS-gbdyKS5s&list=PLG0yEiqorTkgIp97KAagTFfdkPwRGbhUh&index=63)
 
 A 12-DOF legged small-sized quadruped robot capable of multi-modal motion modes. Different motion modes are tested in both simulation and real-world environments.
