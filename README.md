@@ -29,7 +29,7 @@ For certain tests, such as **squeezing**, which includes tests for **low-height 
 ## Kinematics
 All kinematics calculations follow the unit system used in MuJoCo, meaning that all lengths are measured in **meters**. The leg **dimension data** is read from `leg_Data.py`.
 
-`leg_Joint.py` computes the **forward kinematics**, while `leg_IK.py` is used for **inverse kinematics calculations**. If errors occur during testing, it may be necessary to slightly adjust the value of **`q_guess`** to improve convergence.
+`leg_Joint.py` computes the **forward kinematics**, while `leg_IK.py` is used for **inverse kinematics calculations**. If errors occur during testing, it may be necessary to slightly adjust the value of `q_guess` to improve convergence.
 
 ## Control Architecture
 In `sim_test_xxx.py`, the process always begins with **initialization**, transitioning the robot from the modeled position to the initial running posture `init_pleg`, and converting it to **servo control values** `q_init`.
