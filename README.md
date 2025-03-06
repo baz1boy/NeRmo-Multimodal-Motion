@@ -1,6 +1,6 @@
 # NeRmo Mouse Robot
 
-![Robot Simulation](images/NeRmo_Overview.pdf)
+![Robot Simulation](images/NeRmo_Overview.jpg)
 
 [![Video Demonstration](https://img.shields.io/youtube/channel/views/:UClva9bOC5x7I6EH2yGsfpeg)](https://www.youtube.com/watch?v=iS-gbdyKS5s&list=PLG0yEiqorTkgIp97KAagTFfdkPwRGbhUh&index=63)
 
