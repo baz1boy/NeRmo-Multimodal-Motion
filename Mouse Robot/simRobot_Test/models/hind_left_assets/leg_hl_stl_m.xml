@@ -1,0 +1,105 @@
+<mujoco>
+   
+    <body name="base_hl" pos="0 0 0">
+    
+        <geom name="box_hl" mass="0.015" type="box" size="0.00975 0.014 0.014" pos="-0.01225 0.0055 0.0064" rgba="0.95 0.95 0.95 1"/>
+        <geom name="box_link_hl" mass="0.001" type="box" size="0.0025 0.0020 0.0064" pos="0 0 0.0064" rgba="0.95 0.95 0.95 1"/>
+        <geom name="cylinderA_hl" type="cylinder" size="0.003 0.0025" pos="0 0 0" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+        <geom name="cylinderB_hl" type="cylinder" size="0.003 0.0025" pos="0 0 0.0128" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+        <body name="visual_base_hl" pos="0.0023 0 0" euler="0 0 0">
+            <geom name="hip_stl_hl" type="mesh" mesh="hip_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+        </body>
+        
+        <body name="r1_hl" pos="0.004 0 0" euler="20 0 0">
+            <joint name="jointA_hl" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.01" armature="0.00065" limited="true" range="-20 160" ref="20"/>
+            <geom name="link_AE_hl" mass="0.001" type="box" size="0.0015 0.0165 0.002" pos="0 -0.0165 0" euler="0 0 0" rgba=".8 .1 .1 1"/>
+            <geom name="cylinderAEA_hl" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba=".8 .1 .1 1"/>
+            <geom name="cylinderAEE_hl" type="cylinder" size="0.003 0.0015" pos="0 -0.033 0" euler="0 90 0" rgba=".8 .1 .1 1"/>
+            <geom name="cylinderAEF_hl" type="cylinder" size="0.002 0.0015" pos="0 -0.027362 -0.002052" euler="0 90 0" rgba=".8 .1 .1 1"/>
+            <body name="visual_link_AE_hl" pos="-0.0015 0 0" euler="-90 0 0">
+                <geom name="link_AE_stl_hl" type="mesh" mesh="femur_AEF_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                <body name="visual_servo_link_hl" pos="-0.00975 -0.00595 0.0039" euler="-84.832 0 0">
+                    <geom name="servo_link_stl_hl" type="mesh" mesh="servo_link_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                </body>
+            </body>
+            
+            <body name="connectionE1_hl" pos="0 -.033 0">
+                <geom name="cylinderAE_E_hl" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba="1 0.906 0 0"/>
+
+            </body>
+
+            <body name="linkFG_hl" pos="-0.003 -0.027362 -0.002052" euler="-3.158826 0 0">
+                <joint name="jointF_hl" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.0001"/>
+                <geom name="tibia1_hl" mass="0.001" type="box" size="0.0015 0.002 0.015" pos="0 0 -0.015" rgba="0.95 0.95 0.95 1"/>
+                <geom name="cylinderFGF_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                <geom name="cylinderFGG_hl" type="cylinder" size="0.002 0.0015" pos="0 0 -0.03" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                <body name="visual_link_FG_hl" pos="-0.0015 0 0" euler="0 0 0">
+                    <geom name="link_FG_stl_hl" type="mesh" mesh="tibia_FG_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                </body>
+
+                <body name="linkHG_hl" pos="0.003 0 -0.030" euler="73.15878 0 0">
+                    <joint name="jointG_hl" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.01" armature="0.00065" limited="true" range="-70 180"/>
+                    <geom name="foot_hl" mass="0.001" type="box" size="0.0015 0.002 0.003" pos="0 0 0.003" euler="0 0 0" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="cylinderHGG_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="cylinderHGH_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0.006" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="boxHI_hl" type="box" size="0.0015 0.002 0.009" pos="0 -0.0045 0.01379423" euler="30 0 0" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="cylinderI_hl" type="cylinder" size="0.002 0.0015" pos="0 -0.009 0.02158846" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                    <site name="footend_hl" size="0.002" pos="0 -0.009 0.02158846" rgba="0.98 0.4 0.325 0"/>
+                    
+                    <body name="visual_foot_hl" pos="-0.0015 0 0.006" euler="-90 0 0">
+                        <geom name="metatarsus_IHG_stl_hl" type="mesh" mesh="metatarsus_IHG_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                    </body>
+
+                    <body name="connectionH1_hl" pos="0 0 0.006">
+                        <geom name="cylinderHIH_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="1 0.906 0 0"/>
+
+                    </body>
+                </body>
+
+            </body>
+
+        </body>
+
+        <body name="r2_hl" pos="0.004 0 0.0128" euler="0 0 0">
+            <joint name="jointB_hl" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.01" armature="0.00065" limited="true" range="0 270" ref="90"/>
+            <geom name="link_BC_hl" mass="0.0002" type="box" size="0.0015 0.002 0.0059" pos="0 0 0.0059" rgba=".8 .1 .1 1"/>
+            <geom name="cylinderBCB_hl" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba=".8 .1 .1 1"/>
+            <body name="visual_link_BC_hl" pos="-0.0113 0.00594 -0.0039" euler="95.168 0 0">
+                <geom name="servo_regular_stl_hl" type="mesh" mesh="servo_regular_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+            </body>
+            
+
+            <body name="linkCD_hl" pos="0 0 0.0118" euler="124.24637 0 0">
+                <joint name="jointC_hl" pos="0 0 0" type="hinge" axis="1 0 0"/>
+                <geom name="fermur2_hl" mass="0.001" type="box" size="0.0015 0.002 0.021" pos="0 0 0.021" rgba="0.95 0.95 0.95 1"/>
+                <geom name="cylinderCDC_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                <geom name="cylinderCDD_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0.042" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                <body name="visual_link_CD_hl" pos="-0.0015 0 0" euler="180 0 0">
+                    <geom name="link_CD_stl_hl" type="mesh" mesh="femur_CD_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                </body>
+            
+                <body name="linkDE_hl" pos="0.003 0 0.042" euler="-107.4051548 0 0">
+                    <joint name="jointD_hl" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.0001"/>
+                    <geom name="tibia2_hl" mass="0.001" type="box" size="0.0015 0.002 0.0214" pos="0 0 -0.0214" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="cylinderDED_hl" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                    <geom name="cylinderDEE_hl" type="cylinder" size="0.003 0.0015" pos="0 0 -0.0128" euler="0 90 0" rgba="0.95 0.95 0.95 1"/>
+                    <body name="visual_link_DEH_hl" pos="-0.0015 0 -0.0128" euler="0 0 0">
+                        <geom name="link_DEH_stl_hl" type="mesh" mesh="tibia_DEH_hl" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 0"/>
+                    </body>
+
+                    <body name="connectionE2_hl" pos="0 0 0">
+                        <geom name="cylinderDE_E_hl" type="cylinder" size="0.003 0.0015" pos="0 0 -0.0128" euler="0 90 0" rgba="0.7 0.1 0.1 0"/>
+
+                    </body>
+
+                    <body name="connectionH2_hl" pos="0 0 0">
+                        <geom name="cylinderDEH_hl" type="cylinder" size="0.002 0.0015" pos="0 0 -0.0428" euler="0 90 0" rgba="0.7 0.1 0.1 0"/>
+
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+
+
+</mujoco>

@@ -1,0 +1,11 @@
+<mujoco>
+    <contact>
+        <exclude name="e0_fr" body1="r2_fr" body2="linkCD_fr" />
+        <exclude name="e1_fr" body1="r1_fr" body2="linkDE_fr" />
+        <exclude name="e2_fr" body1="r2_fr" body2="base_fr" />
+        <exclude name="e3_fr" body1="r1_fr" body2="base_fr" />
+        <exclude name="e4_fr" body1="linkCD_fr" body2="linkDE_fr" />
+        <exclude name="e5_fr" body1="linkHG_fr" body2="linkDE_fr" />
+
+    </contact>
+</mujoco>

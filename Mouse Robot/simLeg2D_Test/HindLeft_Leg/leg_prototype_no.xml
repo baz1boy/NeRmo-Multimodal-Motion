@@ -1,0 +1,114 @@
+<mujoco>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512" />
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8" />
+
+        <material name="matplane" reflectance="0" texture="texplane" texrepeat="10 10" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>    
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 0" quat="1 0 0 0" material="matplane" condim="1" />
+        
+        <body name="base" pos="0 0 0.07">
+            <geom name="box_hip" mass="0.015" type="box" size="0.00975 0.014 0.014" pos="-0.01225 0.0055 0.0064" rgba="0 .9 0 1"/>
+            <geom name="box_base" mass="0.001" type="box" size="0.0025 0.0020 0.0064" pos="0 0 0.0064" rgba="0 .9 0 1"/>
+            <geom name="cylinderA" type="cylinder" size="0.003 0.0025" pos="0 0 0" euler="0 90 0" rgba="0 .9 0 1"/>
+            <geom name="cylinderB" type="cylinder" size="0.003 0.0025" pos="0 0 0.0128" euler="0 90 0" rgba="0 .9 0 1"/>  
+            
+            <body name="r1" pos="0.004 0 0" euler="20 0 0">
+                <joint name="jointA" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.005" armature="0.00065" limited="true" range="-20 160" ref="0"/>
+                <geom name="link_AE" mass="0.001" type="box" size="0.0015 0.0165 0.002" pos="0 -0.0165 0" euler="0 0 0" rgba=".8 0 0 1"/>
+                <geom name="cylinderAEA" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba=".8 0 0 1"/>
+                <geom name="cylinderAEE" type="cylinder" size="0.003 0.0015" pos="0 -0.033 0" euler="0 90 0" rgba=".8 0 0 1"/>
+                <geom name="cylinderAEF" type="cylinder" size="0.002 0.0015" pos="0 -0.027362 -0.002052" euler="0 90 0" rgba=".8 0 0 1"/>
+                
+                <body name="connection1" pos="0 -.033 0">
+                    <geom name="cylinderAE_E" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba="1 0.906 0 1"/>
+
+                </body>
+
+                <body name="linkFG" pos="-0.003 -0.027362 -0.002052" euler="-3.158826 0 0">
+                    <joint name="jointF" pos="0.003 0 0" type="hinge" axis="1 0 0" />
+                    <geom name="tibia1" mass="0.001" type="box" size="0.0015 0.002 0.015" pos="0 0 -0.015"/>
+                    <geom name="cylinderFGF" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0"/>
+                    <geom name="cylinderFGG" type="cylinder" size="0.002 0.0015" pos="0 0 -0.03" euler="0 90 0"/>
+
+                    <body name="linkHG" pos="0.003 0 -0.030" euler="73.15878 0 0">
+                        <joint name="jointG" pos="0 0 0" type="hinge" axis="1 0 0"/>
+                        <geom name="foot" mass="0.001" type="box" size="0.0015 0.002 0.003" pos="0 0 0.003" euler="0 0 0" rgba="0.1 0.1 0.6 1"/>
+                        <geom name="cylinderHGG" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.1 0.1 0.6 1"/>
+                        <geom name="cylinderHGH" type="cylinder" size="0.002 0.0015" pos="0 0 0.006" euler="0 90 0" rgba="0.1 0.1 0.6 1"/>
+                        <geom name="boxHI" type="box" size="0.0015 0.002 0.009" pos="0 -0.0045 0.01379423" euler="30 0 0" rgba="0.1 0.1 0.6 1"/>
+                        <geom name="cylinderI" type="cylinder" size="0.002 0.0015" pos="0 -0.009 0.02158846" euler="0 90 0" rgba="0.1 0.1 0.6 1"/>
+                    
+                        <body name="connection3" pos="0 0 0.006">
+                            <geom name="cylinderHIH" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0" rgba="1 0.906 0 1"/>
+
+                        </body>
+                    </body>
+
+                </body>
+
+            </body>
+
+            <body name="r2" pos="0.004 0 0.0128" euler="0 0 0">
+                <joint name="jointB" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.005" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                <geom name="link_BC" mass="0.0002" type="box" size="0.0015 0.002 0.0059" pos="0 0 0.0059" rgba="0.851 0.412 0.086 1"/>
+                <geom name="cylinderBCB" type="cylinder" size="0.003 0.0015" pos="0 0 0" euler="0 90 0" rgba="0.851 0.412 0.086 1"/>
+                
+
+                <body name="linkCD" pos="0 0 0.0118" euler="124.24637 0 0">
+                    <joint name="jointC" pos="0 0 0" type="hinge" axis="1 0 0"/>
+                    <geom name="fermur2" mass="0.001" type="box" size="0.0015 0.002 0.021" pos="0 0 0.021"/>
+                    <geom name="cylinderCDC" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0"/>
+                    <geom name="cylinderCDD" type="cylinder" size="0.002 0.0015" pos="0 0 0.042" euler="0 90 0"/>
+                
+                    <body name="linkDE" pos="0.003 0 0.042" euler="-107.4051548 0 0">
+                        <joint name="jointD" pos="0 0 0" type="hinge" axis="1 0 0" />
+                        <geom name="tibia2" mass="0.001" type="box" size="0.0015 0.002 0.0214" pos="0 0 -0.0214"/>
+                        <geom name="cylinderDED" type="cylinder" size="0.002 0.0015" pos="0 0 0" euler="0 90 0"/>
+                        <geom name="cylinderDEE" type="cylinder" size="0.003 0.0015" pos="0 0 -0.0128" euler="0 90 0"/>
+
+                        <body name="connection2" pos="0 0 0">
+                            <geom name="cylinderDE_E" type="cylinder" size="0.003 0.0015" pos="0 0 -0.0128" euler="0 90 0" rgba="1 0.906 0 1"/>
+
+                        </body>
+
+                        <body name="connection4" pos="0 0 0">
+                            <geom name="cylinderDEH" type="cylinder" size="0.002 0.0015" pos="0 0 -0.0428" euler="0 90 0" rgba="1 0.906 0 1"/>
+
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+    </worldbody>
+
+    <equality>
+        <connect name="kinematic_link1" active="true" body1="connection1" body2="connection2" anchor="-0.003 0 0" solref="0.01 0.9"/>
+        <connect name="kinematic_link2" active="true" body1="connection3" body2="connection4" anchor="-0.003 0 0" solref="0.01 0.9"/>
+    </equality> 
+
+    <contact>
+        <exclude name="e0" body1="r2" body2="linkCD" />
+        <exclude name="e1" body1="r1" body2="linkDE" />
+        <exclude name="e2" body1="r2" body2="base" />
+        <exclude name="e3" body1="r1" body2="base" />
+        <exclude name="e4" body1="linkCD" body2="linkDE" />
+        <exclude name="e5" body1="linkHG" body2="linkDE" />
+
+    </contact>
+
+    <sensor>
+        <jointpos name="servo1" joint="jointA"/>
+        <jointpos name="servo2" joint="jointB"/>
+    </sensor>
+
+    <actuator>
+        <position name="servo1" gear="1" ctrllimited="true" ctrlrange="-0.349 2.79" forcelimited="true"  forcerange="-.16 .16" joint="jointA" kp="200"/>
+        <position name="servo2" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="jointB" kp="200"/>
+    </actuator>
+
+</mujoco>

@@ -1,0 +1,291 @@
+<mujoco>
+
+    <include file="test_environment/surmounting_scene.xml" />
+    <include file="hind_left_assets/load_mesh_hl.xml" />
+    <include file="hind_right_assets/load_mesh_hr.xml" />
+    <include file="fore_left_assets/load_mesh_fl.xml" />
+    <include file="fore_right_assets/load_mesh_fr.xml" />
+    <include file="body_assets/load_mesh_tail.xml" />
+
+    <asset>
+        <mesh name="head_bracket" scale="0.001 0.001 0.001" file="body_assets/meshes/head_bracket.stl"/>
+        <mesh name="spine" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="body_assets/meshes/spine_v1.stl"/>
+        <mesh name="assembly" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="body_assets/meshes/assembly_solar.stl"/>
+        <mesh name="head" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="body_assets/meshes/head.stl"/>
+    </asset>
+
+    <worldbody>
+        <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>    
+        <geom name="ground" type="plane" size="0 0 1" pos="0 0 0" quat="1 0 0 0" material="matplane" condim="1" />
+        
+        <camera name="top camera" mode="fixed" pos="0 -1 30" euler="0 0 180" fovy="6"/>
+
+        <body name="mouse" pos="0 0.0806713 0.05" euler="0 0 0">
+            <camera name="tail view camera" mode="track" pos="0 0.35 0.15" euler="110 180 0" fovy="60"/>
+            <camera name="body_cam" mode="fixed" pos="20 0 0.05" euler="90 90 0" fovy="1"/>
+            <joint name="rail" type="free"/>
+
+            <geom name="mouse_body" mass="0.10" type="box" pos="0 -0.0572 0.0008" size="0.0175 0.0375 0.014" euler="2 0 0" rgba="0.16 0.2 0.8 0"/>
+            <!-- <site name="com" size="0.00645" pos="0 -0.0531675 0.00542" rgba="0.5 0.5 0.99 0"/> -->
+            <site name="imu" size="0.00645" pos="0 -0.0471 0.0055" rgba="0.5 0.5 0.99 1"/>
+            <site name="torso_shoulder" size="0.002" pos="0 -0.1106 0.0055" rgba="0.98 0.4 0.325 1"/>
+            <site name="torso_hip" size="0.002" pos="0 0.0164 0.0055" rgba="0.98 0.4 0.325 1"/>
+            <body name="visual_assembly" pos="0 -0.06456 -0.01075" euler="92 0 0">
+                <geom name="assembly_stl" type="mesh" mesh="assembly" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 1"/>
+            </body>
+                     
+
+            <body name="mouse_head" pos="0 -0.147725 0.00525" euler="0 0 0">
+                <geom name="mouse_neck_body" mass="0.006" type="box" pos="0 0 0" size="0.0075 0.0105 0.0079" euler="0 0 0" rgba="0.16 0.2 0.8 0"/>
+                <geom name="mouse_neck" mass="0.002" type="box" pos="0 0 0.0114195" size="0.0075 0.011 0.0035195" euler="0 0 0" rgba="0 0.6 1 0"/>
+
+                <body name="neck_connection" pos= "0 0 0.0114195" euler="0 0 0">
+                    <geom name="connection_cylinder" type="cylinder" pos="0 0.0055 0.0045" size="0.004275 0.0009805" euler="0 0 0" rgba="0.6 .9 0 0"/>
+
+                    <body name="head_bracket" pos="0 0.0055 0.0054805" euler="0 0 0">
+                        <joint name="neck" pos="0 0 0" type="hinge" axis="0 0 1" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                        <geom name="head_bracket_box" type="box" mass="0.001" pos="0 0 0.0015" size="0.0157 0.004 0.0015" euler="0 0 0" rgba="0.9 0.5 0.15 0"/>
+                        <geom name="head_bracket_1" type="box" mass="0.001" pos="0.0145 -0.007 0.0095" size="0.0012 0.0035 0.0095" euler="40 0 0" rgba="0.9 0.5 0.15 0"/>
+                        <geom name="head_bracket_2" type="box" mass="0.001" pos="-0.0145 -0.007 0.0095" size="0.0012 0.0035 0.0095" euler="40 0 0" rgba="0.9 0.5 0.15 0"/>
+                        <geom name="bracket_stl" type="mesh" mesh="head_bracket" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 1"/>
+
+                        <body name="head_head" pos="0 0 0" euler="0 0 0">
+                            <joint name="head" pos="0 -0.010504 0.014062" type="hinge" axis="-1 0 0" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                            <geom name="head_body1" mass="0.0073" type="capsule" fromto="0 -0.0325 0.0095 0 -0.015 0.0095" size="0.0135" rgba="0.5 0.5 0.5 0"/>
+                            <geom name="head_body2" mass="0.0023" type="capsule" fromto="0 -0.0375 0.009 0 -0.046 0.0045" size="0.0125" rgba="0.5 0.5 0.5 0"/>
+                            <geom name="head_ear_left" mass="0.0002" type="cylinder" pos="0.02 -0.01245 0.0255" size="0.0076 0.001" euler="90 0 0" rgba="0.9 0.5 0.15 0"/>
+                            <geom name="head_ear_right" mass="0.0002" type="cylinder" pos="-0.02 -0.01245 0.0255" size="0.0076 0.001" euler="90 0 0" rgba="0.9 0.5 0.15 0"/>
+                            <geom name="head_stl" type="mesh" mesh="head" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 1"/>
+
+                            <site name="nose" size="0.002" pos="0 -0.062 0.0054" rgba="0.98 0.4 0.325 1"/>
+                            <site name="robot_top_left" size="0.002" pos="0.02 -0.01245 0.0331" rgba="0.98 0.4 0.325 0"/>
+                            <site name="robot_top_right" size="0.002" pos="-0.02 -0.01245 0.0331" rgba="0.98 0.4 0.325 0"/>
+                            <camera name="head camera" mode="fixed" pos="0 -0.05 0" euler="90 180 0"/>
+                        </body>                       
+                    </body>
+                </body>
+            </body>
+
+            <!-- Here we define "Spine" and "Tail" -->
+            <body name="visual_spine" pos="0 0 0" euler="0 0 0">
+                    <geom name="spine_stl" type="mesh" mesh="spine" mass="0" contype="0" conaffinity="0" rgba="0.95 0.95 0.95 1"/>
+                    <site name="robot_top_spine" size="0.002" pos="0 -0.0638 0.0458" rgba="0.98 0.4 0.325 0"/>
+                    <site name="robot_tail" size="0.002" pos="0 0.048881 0.023856" rgba="0.98 0.4 0.325 0"/>
+            </body>
+
+            <!-- "shoulder to spine" -->
+            <body pos="0 -0.05 0.0375" name="_t0">
+                <geom name="_t10_body" type="capsule" mass="0.002" fromto="0 0 0 0 -0.014 0" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                <body pos="0 -0.014 0" name="_t1" euler="0 0 0">
+                    <geom name="_t1_body" type="capsule" mass="0.002" fromto="0 0 0 0 -0.0084 -0.001" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                    <body pos="0 -0.0084 -0.001" name="_t2" euler="11.4 0 0">
+                        <geom name="_t2_body" type="capsule" mass="0.002" fromto="0 0 0 0 -0.014 -0.00075" size="0.007" rgba="0.5 0.5 0.5 0"/>
+                        
+                        <body pos="0 -0.014 -0.00075" name="_t3" euler="6.9 0 0">
+                            <geom name="_t3_body" type="capsule" mass="0.002" fromto="0 0 0 0 -0.014 -0.00075" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                            <body pos="0 -0.014 -0.00075" name="_t4" euler="5.4 0 0">
+                                <geom name="_t4_body" type="capsule" mass="0.002" fromto="0 0 0 0 -0.0165 -0.0009" size="0.007" rgba="0.5 0.5 0.5 0"/>
+                            
+                                <body name="shoulder" pos="0 -0.0165 -0.0009" euler="-23.7 0 0">
+                                    <geom name="shoulder_body" type="box" mass="0.003" pos="0 -0.0132214 -0.00352" size="0.0145 0.00975 0.00352" rgba="0.69 0.208 0.098 0"/>
+                                
+           
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+            <!-- "spine to hip and tail" -->
+            <body pos="0 -0.05 0.0375" name="t1">
+                <geom name="t1_body" type="capsule" mass="0.002" fromto="0 0 0 0 0.0084 -0.001" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                <body pos="0 0.0084 -0.001" name="t2" euler="-11.4 0 0">
+                    <!-- <joint name="t2" pos="0 0 0" type="hinge" axis="0 0 1" damping="0.01" stiffness="1.2" armature="0.00065" limited="true" range="-90 90" ref="0"/> -->
+                    <geom name="t2_body" type="capsule" mass="0.002" fromto="0 0 0 0 0.014 -0.00075" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                    <body pos="0 0.014 -0.00075" name="t3" euler="-6.9 0 0">
+                        <!-- <joint name="t3" pos="0 0 0" type="hinge" axis="0 0 1" damping="0.01" stiffness="1.2" armature="0.00065" limited="true" range="-90 90" ref="0"/> -->
+                        <geom name="t3_body" type="capsule" mass="0.002" fromto="0 0 0 0 0.014 -0.00075" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                        <body pos="0 0.014 -0.00075" name="t4" euler="-5.4 0 0">
+                            <!-- <joint name="t4" pos="0 0 0" type="hinge" axis="0 0 1" damping="0.01" stiffness="1.2" armature="0.00065" limited="true" range="-90 90" ref="0"/> -->
+                            <geom name="t4_body" type="capsule" mass="0.002" fromto="0 0 0 0 0.0165 -0.0009" size="0.007" rgba="0.5 0.5 0.5 0"/>
+
+                            <body name="hip" pos="0 0.0165 -0.0009" euler="8.8 0 0">
+                                <geom name="hip_body" type="box" mass="0.003" pos="0 0.014 0" size="0.0095 0.011 0.0042" rgba="0.69 0.208 0.098 0"/>
+                                
+                                <body name="visual_mouse_tail" pos="0 0.0234 -0.0008" euler="15 0 0">
+                                    <joint name="tail_connection" pos="0 0 0" type="hinge" axis="1 0 0" damping="0.0001" limited="true" range="5 100" ref="0"/>
+                                    <include file="body_assets/tail_stl.xml"/>
+                                </body>
+                                
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+
+
+            <!-- Here we define "Fore Leg" -->
+            <body name="shoulder_connection" pos="0 -0.127 0">
+                <geom name="box_shoulder_body" mass="0.01" type="box" size="0.0145 0.00975 0.014" pos="0 0 0" rgba="0 .9 0 0"/>
+                <geom name="shoulder_link" type="box" size="0.0075 0.0025 0.002" pos="0 0.01225 0.0055" rgba="0 .9 0 0"/>
+                <geom name="shoulder_link_cylinder1" type="cylinder" size="0.003 0.0025" pos="0.0075 0.01225 0.0055" euler="90 0 0" rgba="0.6 .9 0 0"/>
+                <geom name="shoulder_link_cylinder2" type="cylinder" size="0.003 0.0025" pos="-0.0075 0.01225 0.0055" euler="90 0 0" rgba="0.6 .9 0 0"/>
+                <site name="body_bottom" size="0.002" pos="0 0 -0.014" rgba="0.98 0.4 0.325 0"/>
+                
+                <body name="shoulder_left" pos="0.0075 0.0164 0.0055">
+                    <joint name="shoulder_left" pos="0 0 0" type="hinge" axis="0 -1 0" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                    <geom name="shoulder_left_cylinder" mass="0.001" type="cylinder" size="0.0065 0.00165" pos="0 0 0"  euler="90 0 0" rgba="0.6 .9 0 0"/>
+                    <geom name="shoulder_left_box" mass="0.001" type="box" size="0.00325 0.00165 0.0065" pos="0.00325 0 0" rgba="0.6 .9 0 0"/>
+
+                    <body name="leg_fore_left" pos="0.0285 0 0">
+                        <include file="fore_left_assets/leg_fl_stl.xml"/>
+                    </body>
+                
+                </body> 
+
+                <body name="shoulder_right" pos="-0.0075 0.0164 0.0055">
+                    <joint name="shoulder_right" pos="0 0 0" type="hinge" axis="0 1 0" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                    <geom name="shoulder_right_cylinder" mass="0.001" type="cylinder" size="0.0065 0.00165" pos="0 0 0"  euler="90 0 0" rgba="0.6 .9 0 0"/>
+                    <geom name="shoulder_right_box" mass="0.001" type="box" size="0.00325 0.00165 0.0065" pos="-0.00325 0 0" rgba="0.6 .9 0 0"/>
+
+                    <body name="leg_fore_right" pos="-0.0285 0 0">
+                        <include file="fore_right_assets/leg_fr_stl.xml"/>
+                    </body>
+        
+                </body> 
+
+            </body>
+      
+            <!-- Here we define "Hind Leg" -->
+            <body name="hip_connection" pos="0 0 0">
+                <geom name="box_hip_body" mass="0.01" type="box" size="0.0145 0.00975 0.014" pos="0 0 0" rgba="0 .9 0 0"/>
+                <geom name="hip_link" type="box" size="0.0075 0.0025 0.002" pos="0 0.01225 0.0055" rgba="0 .9 0 0"/>
+                <geom name="hip_link_shadow" type="box" mass="0.0008" size="0.0075 0.0025 0.002" pos="0 -0.01225 0.0055" rgba="0 .9 0 0"/>
+                <geom name="hip_link_cylinder1" type="cylinder" size="0.003 0.0025" pos="0.0075 0.01225 0.0055" euler="90 0 0" rgba="0.6 .9 0 0"/>
+                <geom name="hip_link_cylinder2" type="cylinder" size="0.003 0.0025" pos="-0.0075 0.01225 0.0055" euler="90 0 0" rgba="0.6 .9 0 0"/>
+                
+                
+                <body name="hip_left" pos="0.0075 0.0164 0.0055">
+                    <joint name="hip_left" pos="0 0 0" type="hinge" axis="0 -1 0" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                    <geom name="hip_left_cylinder" mass="0.001" type="cylinder" size="0.0065 0.00165" pos="0 0 0"  euler="90 0 0" rgba="0.6 .9 0 0"/>
+                    <geom name="hip_left_box" mass="0.001" type="box" size="0.00325 0.00165 0.0065" pos="0.00325 0 0" rgba="0.6 .9 0 0"/>
+
+                    <body name="leg_hind_left" pos="0.0285 0 0">
+                        <include file="hind_left_assets/leg_hl_stl.xml"/>
+                    </body>
+                
+                </body> 
+
+                <body name="hip_right" pos="-0.0075 0.0164 0.0055">
+                    <joint name="hip_right" pos="0 0 0" type="hinge" axis="0 1 0" damping="0.01" armature="0.00065" limited="true" range="-90 90" ref="0"/>
+                    <geom name="hip_right_cylinder" mass="0.001" type="cylinder" size="0.0065 0.00165" pos="0 0 0"  euler="90 0 0" rgba="0.6 .9 0 0"/>
+                    <geom name="hip_right_box" mass="0.001" type="box" size="0.00325 0.00165 0.0065" pos="-0.00325 0 0" rgba="0.6 .9 0 0"/>
+
+                    <body name="leg_hind_right" pos="-0.0285 0 0">
+                        <include file="hind_right_assets/leg_hr_stl.xml"/>
+                    </body>
+        
+                </body> 
+
+            </body>
+        </body>
+
+    </worldbody>
+
+    <equality>        
+        <connect name="joint_link_fl1" active="true" body1="connectionE1_fl" body2="connectionE2_fl" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_fl2" active="true" body1="connectionH1_fl" body2="connectionH2_fl" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_fr1" active="true" body1="connectionE1_fr" body2="connectionE2_fr" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_fr2" active="true" body1="connectionH1_fr" body2="connectionH2_fr" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_hl1" active="true" body1="connectionE1_hl" body2="connectionE2_hl" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_hl2" active="true" body1="connectionH1_hl" body2="connectionH2_hl" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_hr1" active="true" body1="connectionE1_hr" body2="connectionE2_hr" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+        <connect name="joint_link_hr2" active="true" body1="connectionH1_hr" body2="connectionH2_hr" anchor="0 0 0" solref="0.001 1" solimp="1 1 0.001"/>
+    </equality> 
+
+    <include file="fore_left_assets/contact_fl.xml"/>
+    <include file="fore_right_assets/contact_fr.xml"/>
+    <include file="hind_left_assets/contact_hl.xml"/>
+    <include file="hind_right_assets/contact_hr.xml"/>
+    <contact>
+        <exclude name="e_hip_left1" body1="hip_connection" body2="base_hl" />
+        <exclude name="e_hip_right1" body1="hip_connection" body2="base_hr" />
+        <exclude name="e_hip1" body1="hip" body2="hip_left" />
+        <exclude name="e_hip2" body1="hip" body2="hip_right" />
+        <exclude name="e_hip3" body1="hip" body2="base_hl" />
+        <exclude name="e_hip4" body1="hip" body2="base_hr" />
+        <exclude name="e_tail1" body1="tail" body2="base_hl" />
+        <exclude name="e_tail2" body1="servo_tail" body2="base_hl" />
+        <exclude name="e_tail3" body1="tail" body2="base_hr" />
+        <exclude name="e_tail4" body1="servo_tail" body2="base_hr" />
+        <exclude name="e_head" body1="mouse_head" body2="head_head" />
+    </contact>
+
+
+    <actuator>
+        <position name="neck" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57"  forcelimited="true"  forcerange="-.157 .157" joint="neck" kp="100"/>
+        <position name="head" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57"  forcelimited="true"  forcerange="-.157 .157" joint="head" kp="100"/>
+    </actuator>
+
+    <include file="fore_left_assets/sensor_actuator_fl.xml"/>
+    <sensor>
+        <jointpos name="shoulder_left" joint="shoulder_left"/>
+    </sensor>
+    <actuator>
+        <position name="shoulder_left" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="shoulder_left" kp="200"/>
+    </actuator>
+
+    <include file="fore_right_assets/sensor_actuator_fr.xml"/>
+    <sensor>
+        <jointpos name="shoulder_right" joint="shoulder_right"/>
+    </sensor>
+    <actuator>
+        <position name="shoulder_right" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="shoulder_right" kp="200"/>
+    </actuator>
+
+    <include file="hind_left_assets/sensor_actuator_hl.xml"/>
+    <sensor>
+        <jointpos name="hip_left" joint="hip_left"/>
+    </sensor>
+    <actuator>
+        <position name="hip_left" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="hip_left" kp="200"/>
+    </actuator>
+
+    <include file="hind_right_assets/sensor_actuator_hr.xml"/>
+    <sensor>
+        <jointpos name="hip_right" joint="hip_right"/>
+    </sensor>
+    <actuator>
+        <position name="hip_right" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="hip_right" kp="200"/>
+    </actuator>
+
+    <sensor>
+        <!-- <jointpos name="shoulder_left" joint="shoulder_left"/>
+        <jointpos name="shoulder_right" joint="shoulder_right"/>
+        <jointpos name="hip_left" joint="hip_left"/>
+        <jointpos name="hip_right" joint="hip_right"/> -->
+        <!-- <framepos name="shoulder_pos" objtype="site" objname="torso_shoulder"/>
+        <framepos name="hip_pos" objtype="site" objname="torso_hip"/> -->
+        <jointpos name="neck" joint="neck"/>
+        <jointpos name="head" joint="head"/>
+        <force name="foot_force_fl" site="footend_fl"/>
+        <force name="foot_force_fr" site="footend_fr"/>
+        <force name="foot_force_hl" site="footend_hl"/>
+        <force name="foot_force_hr" site="footend_hr"/>
+        <!-- <jointpos name="tail" joint="tail_connection"/> -->
+        <framepos name="com_pos" objtype="site" objname="imu"/>
+        <framequat name="com_quat" objtype="site" objname="imu"/>
+        <framelinvel name="com_vel" objtype="site" objname="imu"/>
+        <accelerometer name="imu_acc" site="imu"/>
+        <gyro name="imu_gyro" site="imu"/>
+    </sensor>
+
+
+</mujoco>

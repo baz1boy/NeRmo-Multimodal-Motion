@@ -1,0 +1,11 @@
+<mujoco>
+    <contact>
+        <exclude name="e0_fl" body1="r2_fl" body2="linkCD_fl" />
+        <exclude name="e1_fl" body1="r1_fl" body2="linkDE_fl" />
+        <exclude name="e2_fl" body1="r2_fl" body2="base_fl" />
+        <exclude name="e3_fl" body1="r1_fl" body2="base_fl" />
+        <exclude name="e4_fl" body1="linkCD_fl" body2="linkDE_fl" />
+        <exclude name="e5_fl" body1="linkHG_fl" body2="linkDE_fl" />
+
+    </contact>
+</mujoco>

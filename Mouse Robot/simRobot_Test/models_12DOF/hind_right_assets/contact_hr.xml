@@ -1,0 +1,11 @@
+<mujoco>
+    <contact>
+        <exclude name="e0_hr" body1="r2_hr" body2="linkCD_hr" />
+        <exclude name="e1_hr" body1="r1_hr" body2="linkDE_hr" />
+        <exclude name="e2_hr" body1="r2_hr" body2="base_hr" />
+        <exclude name="e3_hr" body1="r1_hr" body2="base_hr" />
+        <exclude name="e4_hr" body1="linkCD_hr" body2="linkDE_hr" />
+        <exclude name="e5_hr" body1="linkHG_hr" body2="linkDE_hr" />
+
+    </contact>
+</mujoco>

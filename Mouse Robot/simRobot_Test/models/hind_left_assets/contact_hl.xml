@@ -1,0 +1,11 @@
+<mujoco>
+    <contact>
+        <exclude name="e0_hl" body1="r2_hl" body2="linkCD_hl" />
+        <exclude name="e1_hl" body1="r1_hl" body2="linkDE_hl" />
+        <exclude name="e2_hl" body1="r2_hl" body2="base_hl" />
+        <exclude name="e3_hl" body1="r1_hl" body2="base_hl" />
+        <exclude name="e4_hl" body1="linkCD_hl" body2="linkDE_hl" />
+        <exclude name="e5_hl" body1="linkHG_hl" body2="linkDE_hl" />
+
+    </contact>
+</mujoco>

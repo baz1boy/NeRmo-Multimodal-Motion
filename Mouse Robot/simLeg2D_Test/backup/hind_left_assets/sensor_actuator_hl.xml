@@ -1,0 +1,12 @@
+<mujoco>
+    <sensor>
+        <jointpos name="servo1_hl" joint="jointA_hl"/>
+        <jointpos name="servo2_hl" joint="jointB_hl"/>
+        
+    </sensor>
+
+    <actuator>
+        <position name="servo1_hl" gear="1" ctrllimited="true" ctrlrange="-0.349 2.79" forcelimited="true"  forcerange="-.16 .16" joint="jointA_hl" kp="200"/>
+        <position name="servo2_hl" gear="1" ctrllimited="true" ctrlrange="-1.57 1.57" forcelimited="true"  forcerange="-.16 .16" joint="jointB_hl" kp="200"/>
+    </actuator>
+</mujoco>

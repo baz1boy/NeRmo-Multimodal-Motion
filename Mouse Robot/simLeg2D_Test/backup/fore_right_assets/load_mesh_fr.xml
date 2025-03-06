@@ -1,0 +1,12 @@
+<mujoco>
+	<asset>
+        <mesh name="shoulder_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/Shoulder_right.stl"/>
+		<mesh name="femur_AEF_fr" refquat="1 0 0 0"  scale="0.001 0.001 0.001" file="fore_right_assets/meshes/femur_AEF_r.stl"/>
+        <mesh name="servo_link_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/Servo_Horn1_r.stl"/>
+        <mesh name="servo_regular_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/Servo_Horn2_r.stl"/>
+		<mesh name="femur_CD_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/femur_CD_r.stl"/>
+		<mesh name="tibia_DEH_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/tibia_DEH_r.stl"/>
+        <mesh name="tibia_FG_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/tibia_FG_r.stl"/>
+        <mesh name="metatarsus_IHG_fr" refquat="1 0 0 0" scale="0.001 0.001 0.001" file="fore_right_assets/meshes/metatarsus_IHG_r.stl"/>
+	</asset>
+</mujoco>
