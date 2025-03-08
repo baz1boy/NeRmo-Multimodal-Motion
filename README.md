@@ -15,13 +15,15 @@ All files are configured based on the MuJoCo environment in Python, starting wit
 - **Multi-modal motion control:** including **basic motion**, **turning in place**, **self-recovery from falling**, **squeezing thourgh small openings**, and **surmounting obstacles**. The jump motion is also included but has not achieved effective performance.
 
 ## Setup
+MuJoCo provides [Python bindings](https://mujoco.readthedocs.io/en/stable/python.html#python-bindings).
+
 ### Prerequisites
 - Ubuntu 20.04/22.04
 - Python 3.8+
 - MuJoCo
 
 ### Simulation Configuraiton
-The XML files are stored in the `models` folder, with each leg individually modeled. In the main body XML file, all components—including the legs, head, body, tail, and environment are assembled. The model structures created in MuJoCo are replaced with CAD STL files located in the `meshes` folder.
+The XML model files are stored in the `models` folder, with each leg individually modeled. In the main body XML file, all components—including the legs, head, body, tail, and environment are assembled. The model structures created in native **MJCF** format are replaced with CAD STL files located in the `meshes` folder. Ckeak the [modeling guide](https://mujoco.readthedocs.io/en/stable/modeling.html) and [reference manual](https://mujoco.readthedocs.io/en/stable/XMLreference.html) for understanding.
 
 ### Test Setup
 Each motion test has a dedicated test script `sim_test_xxx.py`. In the scripts, it is important to ensure that the appropriate MuJoCo modeling environment files are imported. 
