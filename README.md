@@ -28,6 +28,17 @@ Each motion test has a dedicated test script `sim_test_xxx.py`. In the scripts, 
 
 For certain tests, such as squeezing, which includes tests for **low-height openings** and **narrow-width openings**, make sure to modify the corresponding environment configuration in `robot_body_squeezing.xml` in `models` accordingly.
 
+## Test Program
+`sim_test_turning.py`: The turning test marks the beginning of the turning in place testing. The preceding commented-out sections correspond to tests of twisting motion, including roll, pitch, and yaw rotations.
+
+`sim_test_recover.py`: It includes the simulation of side-lying and back-lying postures, and unnecessary test cases need to be commented out.
+
+`sim_test_squeezing.py`: It is used to test the robot's ability to pass through low-height and narrow-width openings. The testing target can be selected by commenting or uncommenting **"Through a low hole"** and **"Through a narrow hole"** accordingly. Depending on the selected target, the corresponding environment modeling—low test or narrow test—needs to be specified in `models/test environment/squeezing_scene.xml`.
+
+`sim_test_lower_leaning.py`: In the **"Trajectory Points"** part, select the start and end positions of the foot end. Positions **1** to **4** correspond to lower posture testing, while **point 5** is used for **leaning posture testing**. The parameter **s** is used to adjust the **gait stride length** in the lower posture. Modify the height of passage in `models/test environment/move_scene.xml` to test the **minimum passable height** based on the body height data collected by the sensors when the robot operates in **lower posture** or **leaning posture**.
+
+`sim_test_surmounting.py`: Adjust the obstacle dimension in `models/test environment/surmounting_scene.xml` to test the maximum surmountable height.
+
 ## Kinematics
 All kinematics calculations follow the unit system used in MuJoCo, meaning that all lengths are measured in meters. The leg dimension data is read from `leg_Data.py`.
 
