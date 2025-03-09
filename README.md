@@ -30,7 +30,7 @@ Each motion test has a dedicated test script `sim_test_xxx.py`. In the scripts, 
 
 For certain tests, such as squeezing, which includes tests for **low-height openings** and **narrow-width openings**, make sure to modify the corresponding environment configuration in `robot_body_squeezing.xml` in `models` accordingly.
 
-## Testing Scenario
+### Testing Scenario
 `sim_test_turning.py`: The **turning test** marks the beginning of the turning in place testing. The preceding commented-out sections correspond to tests of twisting motion, including roll, pitch, and yaw rotations.
 
 `sim_test_recover.py`: It includes the simulation of side-lying and back-lying postures, and unnecessary test cases need to be commented out.
